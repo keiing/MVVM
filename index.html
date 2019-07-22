@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    .message {
+        color: #f0f;
+    }
+</style>
+
+<body>
+    <div id="app">
+        <div class="message" v-html='message'></div>
+        <input type="text" v-model="school.name">
+        <div>{{school.name}}</div>
+        <div>{{school.age}}</div>
+        <!-- 如果数据不变化 视图就不会刷新 -->
+        {{getNewname}}
+        <!-- 我们在内部 会匹配 {{}} -->
+        <ul>
+            <li>1</li>
+            <li>1</li>
+        </ul>
+        <button v-on:click='handle'>更新操作</button>
+    </div>
+    <script src='js/MVVM.js'></script>
+    <script>
+        let vm = new Vue({
+            el: '#app',
+            data: {
+                school: {
+                    name: "曹曹",
+                    age: 10
+                },
+                message: '<h1>欢迎大家</h1>'
+            },
+            computed: {
+                getNewname() {
+                    return this.school.name + '构架'
+                }
+            },
+            methods: {
+                handle() {
+                    this.school.name = "曹操"
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>
